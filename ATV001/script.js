@@ -21,7 +21,7 @@ function createCard(title, description, date) {
 const entries = [
     {
         title: "Hoje é um dia especial!",
-        description: "Estou iniciando meu diário online. Aqui, poderei registrar meus pensamentos, reflexões e momentos importantes da minha vida. É um espaço para expressar minha criatividade e acompanhar meu crescimento pessoal. ahjsgfhdgfhkasgfhdgfkjagsfjkagkjfgasdjgfdhgfajsdghfagsdkjfgasjfhghjasgdfjkagjdgfhajsgdfkjgashfdsagfkgdksahjfdgshkjfdgfhkjagfhsdgfhjasdgfkjhgdfjgfhdfajghsdfgjfgdshjfgafjsgk",
+        description: "Estou iniciando meu diário online. Aqui, poderei registrar meus pensamentos, reflexões e momentos importantes da minha vida. É um espaço para expressar minha criatividade e acompanhar meu crescimento pessoal.",
         date: "2025-02-25"
     },
     {
