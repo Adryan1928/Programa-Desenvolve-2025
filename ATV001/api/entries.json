@@ -1,0 +1,28 @@
+{
+  "entries": [
+    {
+      "id": 1,
+      "title": "Hoje é um dia especial!",
+      "description": "Estou iniciando meu diário online. Aqui, poderei registrar meus pensamentos, reflexões e momentos importantes da minha vida. É um espaço para expressar minha criatividade e acompanhar meu crescimento pessoal.",
+      "date": "2025-02-25"
+    },
+    {
+      "id": 2,
+      "title": "Reflexões sobre o futuro",
+      "description": "Hoje pensei muito sobre meus objetivos e sonhos. É importante ter clareza sobre onde quero chegar e quais passos preciso dar para alcançar meus objetivos. Vou focar em desenvolver minhas habilidades técnicas.",
+      "date": "2025-02-24"
+    },
+    {
+      "id": 3,
+      "title": "Aprendizado constante",
+      "description": "Cada dia é uma oportunidade de aprender algo novo. Hoje descobri novas tecnologias que podem ser úteis nos meus projetos. A jornada de desenvolvimento nunca para!",
+      "date": "2025-02-23"
+    },
+    {
+      "id": 4,
+      "title": "Gratidão",
+      "description": "Sou grato por todas as oportunidades que tenho tido. Cada experiência, seja ela positiva ou desafiadora, contribui para meu crescimento pessoal e profissional.",
+      "date": "2025-02-22"
+    }
+  ]
+}
