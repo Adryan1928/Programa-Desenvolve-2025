@@ -1,13 +1,29 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-Br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Papeando com a IA</title>
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
-</head>
-<body>
-    
+ </head>   
+<body class="modo-claro">
+    <header>
+        <h1> Minha Aplicação com OpenAI</h1>
+        
+        <label for="api-key" class="sr-only">API Key</label>
+        <input type="password" placeholder="Digite sua API Key" id="api-key">
+    </header>
+
+    <main>
+        <div class="pergunta-box">
+            <label for="pergunta" class="sr-only">Pergunta</label>
+            <input type="text" placeholder="Faça sua pergunta..." id="pergunta">
+            <button id="perguntar">Perguntar</button>
+        </div>
+        
+        <section id="resposta" class="">
+            <!-- Resposta da IA aparece aqui -->
+             <button id="copiar-resposta">Copiar Resposta</button>   
+        </section>
+    </main>
 </body>
-<script src="script.js"></script>
 </html>
