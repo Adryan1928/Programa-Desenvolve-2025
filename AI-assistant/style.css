@@ -10,7 +10,7 @@ header {
     background-color: #0066cc;
     padding: 20px;
     text-align: center;
-    color: White;
+    color: white;
 }
 
 input[type="password"],
@@ -36,7 +36,7 @@ button:hover {
     background-color: #007acc;
 }
 
-/*Botãozinho de copiar */
+/* Botãozinho de copiar */
 #copiar-resposta {
     margin-top: 15px;
     background-color: #4caf50;
@@ -64,7 +64,7 @@ button:hover {
     background-color: #cce6ff;
     border: 1px solid #99ccff;
     border-radius: 5px;
-    /*Preparação para esconder */
+    /* Preparação para esconder */
     display: none;
 }
 
@@ -76,19 +76,21 @@ button:hover {
     }
     to {
         opacity: 1;
-        tramsform: translateY(0);
+        transform: translateY(0);
     }
 }
 
 /* Classe pro JS */
 #resposta.mostrar {
     display: block;
-    animation: fadeIn 0.6 ease-in-out;
+    animation: fadeIn 0.6s ease-in-out;
+    animation-fill-mode: forwards;
 }
 
-
-/*Acessibilidade */
+/* Acessibilidade */
 .sr-only {
     position: absolute;
     left: -9999px;
 }
+
+
