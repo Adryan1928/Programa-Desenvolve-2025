@@ -22,7 +22,8 @@ input[type="text"] {
     width: 250px;
 }
 
-input[type="submit"] {
+input[type="submit"],
+#toggle-theme {
     padding: 10px 20px;
     background-color: #3399ff;
     color: white;
@@ -31,26 +32,12 @@ input[type="submit"] {
     cursor: pointer;
     font-size: 16px;
     margin-left: 10px;
+    margin-top: 10px;
 }
 
-input[type="submit"]:hover {
+input[type="submit"]:hover,
+#toggle-theme:hover {
     background-color: #007acc;
-}
-
-/* Botãozinho de copiar */
-#copiar-resposta {
-    margin-top: 15px;
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 8px 16px;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-#copiar-resposta:hover {
-    background-color: #45a049;
 }
 
 .pergunta-box {
@@ -65,7 +52,6 @@ input[type="submit"]:hover {
     border-top: 1px solid #99ccff;
 }
 
-/* Espaço extra para não esconder a resposta */
 #resposta {
     margin-top: 40px;
     text-align: center;
@@ -74,7 +60,43 @@ input[type="submit"]:hover {
     border: 1px solid #99ccff;
     border-radius: 5px;
     display: none;
-    padding-bottom: 80px;
+    padding-bottom: 100px;
+}
+
+/* Blocos de histórico */
+.bloco-resposta {
+    margin-bottom: 20px;
+    text-align: left;
+    background-color: #f0f8ff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.bloco-resposta p {
+    margin: 5px 0;
+}
+
+.bloco-resposta button {
+    background-color: #ff9900;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.bloco-resposta button:hover {
+    background-color: #cc7a00;
+}
+
+/* Loading */
+#loading {
+    display: none;
+    text-align: center;
+    font-size: 18px;
+    margin: 20px;
 }
 
 /* Animaçãozinha de entrada */
@@ -89,7 +111,6 @@ input[type="submit"]:hover {
     }
 }
 
-/* Classe pro JS */
 #resposta.mostrar {
     display: block;
     animation: fadeIn 0.6s ease-in-out;
@@ -101,5 +122,30 @@ input[type="submit"]:hover {
     position: absolute;
     left: -9999px;
 }
+
+/* Dark mode */
+.dark-mode {
+    background-color: #121212;
+    color: #f0f0f0;
+}
+
+.dark-mode header {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+.dark-mode .pergunta-box {
+    background-color: #1e1e1e;
+    border-top: 1px solid #333;
+}
+
+.dark-mode input,
+.dark-mode button {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #555;
+}
+
+
 
 
