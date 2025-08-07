@@ -22,7 +22,7 @@ input[type="text"] {
     width: 250px;
 }
 
-button {
+input[type="submit"] {
     padding: 10px 20px;
     background-color: #3399ff;
     color: white;
@@ -30,9 +30,10 @@ button {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    margin-left: 10px;
 }
 
-button:hover {
+input[type="submit"]:hover {
     background-color: #007acc;
 }
 
@@ -53,10 +54,18 @@ button:hover {
 }
 
 .pergunta-box {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #e6f0ff;
+    padding: 15px;
     text-align: center;
-    margin-top: 30px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    border-top: 1px solid #99ccff;
 }
 
+/* Espaço extra para não esconder a resposta */
 #resposta {
     margin-top: 40px;
     text-align: center;
@@ -64,8 +73,8 @@ button:hover {
     background-color: #cce6ff;
     border: 1px solid #99ccff;
     border-radius: 5px;
-    /* Preparação para esconder */
     display: none;
+    padding-bottom: 80px;
 }
 
 /* Animaçãozinha de entrada */
