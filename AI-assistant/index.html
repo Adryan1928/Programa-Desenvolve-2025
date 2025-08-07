@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="pt-Br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <title>Papeando com a IA</title>
     <link rel="stylesheet" href="style.css">
- </head>   
+</head>   
 <body>
     <header>
         <h1>Minha Aplicação com OpenAI</h1>
@@ -14,16 +14,16 @@
     </header>
 
     <main>
-        <div class="pergunta-box">
-            <label for="pergunta" class="sr-only">Pergunta</label>
-            <input type="text" placeholder="Faça sua pergunta..." id="pergunta">
-            <button id="perguntar">Perguntar</button>
-        </div>
-        
-        <section id="resposta" class="">
+        <section id="resposta">
             <!-- Resposta da IA aparece aqui -->
-             <button id="copiar-resposta">Copiar Resposta</button>   
+            <button id="copiar-resposta">Copiar Resposta</button>   
         </section>
+
+        <form class="pergunta-box">
+            <label for="pergunta" class="sr-only">Pergunta</label>
+            <input type="text" placeholder="Faça sua pergunta..." id="pergunta" required>
+            <input type="submit" value="Perguntar" id="perguntar">
+        </form>
     </main>
 </body>
 </html>
