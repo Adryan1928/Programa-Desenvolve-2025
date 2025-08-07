@@ -11,12 +11,14 @@
         
         <label for="api-key" class="sr-only">API Key</label>
         <input type="password" placeholder="Digite sua API Key" id="api-key">
+        <button id="toggle-theme"> Alternar Tema</button>
     </header>
 
     <main>
+        <div id="loading"> Pensando...</div>
+
         <section id="resposta">
-            <!-- Resposta da IA aparece aqui -->
-            <button id="copiar-resposta">Copiar Resposta</button>   
+            <!-- Histórico de respostas aparece aqui -->
         </section>
 
         <form class="pergunta-box">
@@ -25,5 +27,7 @@
             <input type="submit" value="Perguntar" id="perguntar">
         </form>
     </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
