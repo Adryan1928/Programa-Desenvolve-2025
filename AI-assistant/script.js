@@ -1,7 +1,14 @@
 const URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent"
 
 function carregarRespostas() {
-    const respostas = JSON.parse(localStorage.getItem("respostas")) || [];
+    const respostasSalvas = localStorage.getItem("respostas");
+    let respostas = [];
+    try {
+        respostas = respostasSalvas ? JSON.parse(respostasSalvas) : [];
+    } catch (e) {
+        console.warn("Erro ao carregar respostas do localStorage");
+    }
+
     respostas.forEach(({ pergunta, resposta }) => {
         adicionarResposta(resposta, pergunta);
     });
@@ -26,11 +33,19 @@ function adicionarResposta(resposta, pergunta) {
 
 async function fazerPergunta(pergunta) {
     const apiKey = document.getElementById("api-key").value;
+
+    if (!pergunta || !pergunta.trim()) {
+        return "⚠️ Digite uma pergunta antes de enviar.";
+    }
+
+    if (!apiKey || !apiKey.trim()) {
+        return "⚠️ Insira sua API Key antes de continuar.";
+    }
+
     const headers = {
         'content-type': 'application/json',
         'X-goog-api-key': apiKey,
     }
-
 
     try {
         const response = await fetch(URL, {
@@ -49,6 +64,11 @@ async function fazerPergunta(pergunta) {
         })
 
         const data = await response.json();
+
+        if (!data?.candidates?.[0]?.content?.parts?.[0]?.text) {
+            console.warn("Resposta da API não está no formato esperado:", data);
+            return "❌ A API não retornou conteúdo válido.";
+        }
 
         if (apiKey) {
             localStorage.setItem("apiKey", apiKey)
