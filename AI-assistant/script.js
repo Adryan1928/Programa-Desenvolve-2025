@@ -1,20 +1,24 @@
 const URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent"
 
 function carregarRespostas() {
+    const respostasDiv = document.querySelector("#respostas");
     const respostasSalvas = localStorage.getItem("respostas");
+    let lengthRespostas = 0;
     let respostas = [];
+
     try {
         respostas = respostasSalvas ? JSON.parse(respostasSalvas) : [];
     } catch (e) {
         console.warn("Erro ao carregar respostas do localStorage");
     }
 
+
     respostas.forEach(({ pergunta, resposta }) => {
-        adicionarResposta(resposta, pergunta);
+        adicionarResposta(resposta, pergunta, false);
     });
 }
 
-function adicionarResposta(resposta, pergunta) {
+function adicionarResposta(resposta, pergunta, isSetItem = true) {
     const respostasDiv = document.querySelector("#respostas");
     const novaResposta = document.createElement("div");
     novaResposta.classList.add("respostas");
@@ -28,7 +32,13 @@ function adicionarResposta(resposta, pergunta) {
     </div>`;
     respostasDiv.style.display = "flex";
     respostasDiv.appendChild(novaResposta);
-    localStorage.setItem("respostas", JSON.stringify([...JSON.parse(localStorage.getItem("respostas") || "[]"), { pergunta, resposta }]));
+    if (isSetItem){
+        localStorage.setItem("respostas", JSON.stringify([...JSON.parse(localStorage.getItem("respostas") || "[]"), { pergunta, resposta }]));
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: 'smooth'
+        });
+    }
 }
 
 async function fazerPergunta(pergunta) {
@@ -119,5 +129,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
         localStorage.setItem("tema", isDark ? "escuro" : "claro");
 
         toggleBtn.textContent = isDark ? "Modo Claro" : "Modo Escuro";
+    });
+
+    window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth'
     });
 });
