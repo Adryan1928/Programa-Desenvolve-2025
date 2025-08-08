@@ -1,5 +1,12 @@
 const URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent"
 
+function carregarRespostas() {
+    const respostas = JSON.parse(localStorage.getItem("respostas")) || [];
+    respostas.forEach(({ pergunta, resposta }) => {
+        adicionarResposta(resposta, pergunta);
+    });
+}
+
 function adicionarResposta(resposta, pergunta) {
     const respostasDiv = document.getElementById("respostas");
     const novaResposta = document.createElement("div");
@@ -14,6 +21,7 @@ function adicionarResposta(resposta, pergunta) {
     </div>`;
     respostasDiv.style.display = "flex";
     respostasDiv.appendChild(novaResposta);
+    localStorage.setItem("respostas", JSON.stringify([...JSON.parse(localStorage.getItem("respostas") || "[]"), { pergunta, resposta }]));
 }
 
 async function fazerPergunta(pergunta) {
@@ -23,27 +31,45 @@ async function fazerPergunta(pergunta) {
         'X-goog-api-key': apiKey,
     }
 
-    const response = await fetch(URL, {
-        method: 'POST',
-        headers: headers,
-        body: JSON.stringify({
-            contents: [
-                {
-                    role: "user",
-                    parts: [
-                        { text: pergunta }
-                    ]
-                }
-            ]
-        })
-    })
 
-    const data = await response.json();
-    return data.candidates[0].content.parts[0].text;
+    try {
+        const response = await fetch(URL, {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify({
+                contents: [
+                    {
+                        role: "user",
+                        parts: [
+                            { text: pergunta }
+                        ]
+                    }
+                ]
+            })
+        })
+
+        const data = await response.json();
+
+        if (apiKey) {
+            localStorage.setItem("apiKey", apiKey)
+        }
+        return data.candidates[0].content.parts[0].text;
+    } catch (error) {
+        console.error("Error ao fazer a pergunta:", error);
+    }
+
+    return "ERROR!"
 }
 
 document.addEventListener("DOMContentLoaded", (event) => {
     const form = document.querySelector(".pergunta-box");
+
+    const apiKey = localStorage.getItem("apiKey");
+
+    if (apiKey) {
+        document.getElementById("api-key").value = apiKey;
+    }
+    carregarRespostas();
     form.addEventListener("submit", async (event) => {
         event.preventDefault();
 
@@ -52,5 +78,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
         const resposta = await fazerPergunta(pergunta);
 
         adicionarResposta(resposta, pergunta);
+        document.getElementById("pergunta").value = "";
     });
 });
