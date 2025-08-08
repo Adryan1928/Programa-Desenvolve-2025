@@ -40,6 +40,12 @@ input[type="submit"]:hover,
     background-color: #007acc;
 }
 
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .pergunta-box {
     position: fixed;
     bottom: 0;
@@ -52,43 +58,49 @@ input[type="submit"]:hover,
     border-top: 1px solid #99ccff;
 }
 
-#resposta {
+#respostas {
+    /* display: flex; */
+    flex-direction: column;
+    gap: 12px;
     margin-top: 40px;
-    text-align: center;
     padding: 20px;
-    background-color: #cce6ff;
     border: 1px solid #99ccff;
-    border-radius: 5px;
-    display: none;
-    padding-bottom: 100px;
-}
-
-/* Blocos de histórico */
-.bloco-resposta {
-    margin-bottom: 20px;
-    text-align: left;
-    background-color: #f0f8ff;
-    padding: 15px;
     border-radius: 8px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    width: 60%;
+    display: none;
+    gap: 16px;
 }
 
-.bloco-resposta p {
-    margin: 5px 0;
+.respostas {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
-.bloco-resposta button {
-    background-color: #ff9900;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 6px 12px;
-    cursor: pointer;
-    font-size: 14px;
+.pergunta {
+    display: flex;
+    align-self: flex-end;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #9a9a9a;
+    background-color: #9a9a9a;
+    padding: 8px;
+    border-radius: 8px;
+    gap: 6px;
 }
 
-.bloco-resposta button:hover {
-    background-color: #cc7a00;
+.pergunta p {
+    margin: 0;
+    padding: 0;
+    font-size: 0.8rem;
+    color: #ffffff;
+}
+
+.resposta p {
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+    color: #000;
 }
 
 /* Loading */
@@ -109,18 +121,6 @@ input[type="submit"]:hover,
         opacity: 1;
         transform: translateY(0);
     }
-}
-
-#resposta.mostrar {
-    display: block;
-    animation: fadeIn 0.6s ease-in-out;
-    animation-fill-mode: forwards;
-}
-
-/* Acessibilidade */
-.sr-only {
-    position: absolute;
-    left: -9999px;
 }
 
 /* Dark mode */

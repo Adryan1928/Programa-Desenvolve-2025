@@ -7,7 +7,7 @@
 </head>   
 <body>
     <header>
-        <h1>Minha Aplicação com OpenAI</h1>
+        <h1>Minha Aplicação com Gemini</h1>
         
         <label for="api-key" class="sr-only">API Key</label>
         <input type="password" placeholder="Digite sua API Key" id="api-key">
@@ -17,12 +17,10 @@
     <main>
         <div id="loading"> Pensando...</div>
 
-        <section id="resposta">
-            <!-- Histórico de respostas aparece aqui -->
+        <section id="respostas">
         </section>
 
-        <form class="pergunta-box">
-            <label for="pergunta" class="sr-only">Pergunta</label>
+        <form class="pergunta-box" method="post" action=".">
             <input type="text" placeholder="Faça sua pergunta..." id="pergunta" required>
             <input type="submit" value="Perguntar" id="perguntar">
         </form>
