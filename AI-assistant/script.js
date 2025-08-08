@@ -8,7 +8,7 @@ function carregarRespostas() {
 }
 
 function adicionarResposta(resposta, pergunta) {
-    const respostasDiv = document.getElementById("respostas");
+    const respostasDiv = document.querySelector("#respostas");
     const novaResposta = document.createElement("div");
     novaResposta.classList.add("respostas");
     novaResposta.innerHTML = `
@@ -25,7 +25,7 @@ function adicionarResposta(resposta, pergunta) {
 }
 
 async function fazerPergunta(pergunta) {
-    const apiKey = document.getElementById("api-key").value;
+    const apiKey = document.querySelector("#api-key").value;
     const headers = {
         'content-type': 'application/json',
         'X-goog-api-key': apiKey,
@@ -63,21 +63,41 @@ async function fazerPergunta(pergunta) {
 
 document.addEventListener("DOMContentLoaded", (event) => {
     const form = document.querySelector(".pergunta-box");
+    const toggleBtn = document.querySelector("#toggle-theme");
+
+    const temaSalvo = localStorage.getItem("tema");
+    if (temaSalvo === "escuro") {
+        document.body.classList.add("dark-mode");
+        toggleBtn.textContent = "Modo Claro";
+    } else {
+        toggleBtn.textContent = "Modo Escuro";
+    }
+
+
 
     const apiKey = localStorage.getItem("apiKey");
 
     if (apiKey) {
-        document.getElementById("api-key").value = apiKey;
+        document.querySelector("#api-key").value = apiKey;
     }
     carregarRespostas();
     form.addEventListener("submit", async (event) => {
         event.preventDefault();
 
-        const pergunta = document.getElementById("pergunta").value;
+        const pergunta = document.querySelector("#pergunta").value;
 
         const resposta = await fazerPergunta(pergunta);
 
         adicionarResposta(resposta, pergunta);
-        document.getElementById("pergunta").value = "";
+        document.querySelector("#pergunta").value = "";
+    });
+
+    toggleBtn.addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+
+        const isDark = document.body.classList.contains("dark-mode");
+        localStorage.setItem("tema", isDark ? "escuro" : "claro");
+
+        toggleBtn.textContent = isDark ? "Modo Claro" : "Modo Escuro";
     });
 });

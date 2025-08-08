@@ -139,6 +139,9 @@ main {
     border-top: 1px solid #333;
 }
 
+.dark-mode p {
+    color: #fff;
+}
 .dark-mode input,
 .dark-mode button {
     background-color: #333;
