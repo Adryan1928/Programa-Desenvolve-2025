@@ -18,24 +18,47 @@ function createCard(title, description, date) {
     cardsContainer.appendChild(card);
 }
 
-const entries = [
-    {
-        title: "Hoje é um dia especial!",
-        description: "Estou iniciando meu diário online. Aqui, poderei registrar meus pensamentos, reflexões e momentos importantes da minha vida. É um espaço para expressar minha criatividade e acompanhar meu crescimento pessoal.",
-        date: "2025-02-25"
-    },
-    {
-        title: "Hoje é um dia especial!",
-        description: "Estou iniciando meu diário online. Aqui, poderei registrar meus pensamentos, reflexões e momentos importantes da minha vida. É um espaço para expressar minha criatividade e acompanhar meu crescimento pessoal.",
-        date: "2025-02-25"
-    },
-    {
-        title: "Hoje é um dia especial!",
-        description: "Estou iniciando meu diário online. Aqui, poderei registrar meus pensamentos, reflexões e momentos importantes da minha vida. É um espaço para expressar minha criatividade e acompanhar meu crescimento pessoal.",
-        date: "2025-02-25"
-    },
-];
+function showLoading() {
+    cardsContainer.innerHTML = `
+        <div class="flex items-center justify-center w-full p-8">
+            <p class="text-lg text-slate-600">Carregando entradas do diário...</p>
+        </div>
+    `;
+}
 
-entries.forEach(entry => {
-    createCard(entry.title, entry.description, entry.date);
-});
+function showError(message) {
+    cardsContainer.innerHTML = `
+        <div class="flex items-center justify-center w-full p-8">
+            <p class="text-lg text-red-600">Erro: ${message}</p>
+        </div>
+    `;
+}
+
+async function loadEntries() {
+    try {
+        showLoading();
+        
+        const response = await fetch('./api/entries.json');
+        
+        if (!response.ok) {
+            throw new Error(`Erro ao carregar dados: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        
+        // Clear loading message
+        cardsContainer.innerHTML = '';
+        
+        // Render entries
+        data.entries.forEach(entry => {
+            createCard(entry.title, entry.description, entry.date);
+        });
+        
+    } catch (error) {
+        console.error('Erro ao carregar entradas:', error);
+        showError('Não foi possível carregar as entradas do diário.');
+    }
+}
+
+// Load entries when the page loads
+document.addEventListener('DOMContentLoaded', loadEntries);
