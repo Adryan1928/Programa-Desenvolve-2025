@@ -44,6 +44,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 .pergunta-box {
@@ -59,7 +60,6 @@ main {
 }
 
 #respostas {
-    /* display: flex; */
     flex-direction: column;
     gap: 12px;
     margin: 40px 0px 130px 0px;
@@ -111,6 +111,36 @@ main {
     margin: 20px;
 }
 
+/* Botões novos */
+.botoes-acao {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.botoes-acao button {
+    padding: 10px 18px;
+    background-color: #3399ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.botoes-acao button:hover {
+    background-color: #007acc;
+    transform: scale(1.05);
+}
+
+.botoes-acao button:active {
+    transform: scale(0.98);
+}
+
 /* Animaçãozinha de entrada */
 @keyframes fadeIn {
     from {
@@ -142,12 +172,24 @@ main {
 .dark-mode p {
     color: #fff;
 }
+
 .dark-mode input,
 .dark-mode button {
     background-color: #333;
     color: #fff;
     border: 1px solid #555;
 }
+
+.dark-mode .botoes-acao button {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #555;
+}
+
+.dark-mode .botoes-acao button:hover {
+    background-color: #555;
+}
+
 
 
 
