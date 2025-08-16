@@ -20,7 +20,6 @@
         <section id="respostas">
         </section>
 
-       <!-- Botões novos -->
         <div class="botoes-acao">
             <button id="btnLimpar" title="Limpar respostas da tela">
                 Limpar
@@ -31,12 +30,15 @@
         </div>
 
         <form class="pergunta-box" method="post" action=".">
-            <input type="text" placeholder="Faça sua pergunta..." id="pergunta" required>
-            <input type="submit" value="Perguntar" id="perguntar">
+            <label for="pergunta">Sua pergunta</label>
+            <input type="text" placeholder="Digite sua pergunta aqui..." id="pergunta" maxlength="577" required>
+            <div id="contador">0 / 577 caracteres</div>
+            <input type="submit" value="Perguntar" id="perguntar" disabled>
         </form>
     </main>
 
     <script src="script.js"></script>
 </body>
 </html>
+
 
