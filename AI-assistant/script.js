@@ -135,4 +135,22 @@ document.addEventListener("DOMContentLoaded", (event) => {
         top: document.body.scrollHeight,
         behavior: 'smooth'
     });
+
+    document.getElementById("exportPdfBtn").addEventListener("click", () => {
+        // Seleciona o chat inteiro
+        const element = document.getElementById("respostas");
+
+        const opt = {
+            margin:       [10, 10, 10, 10], // top, left, bottom, right
+            filename:     'chat-conversa.pdf',
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { scale: 2, useCORS: true },
+            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
+            pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] } // evita que divs quebrem no meio
+        };
+
+
+        // Gera o PDF
+        html2pdf().set(opt).from(element).save();
+    });
 });
