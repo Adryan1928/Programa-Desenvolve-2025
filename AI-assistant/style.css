@@ -107,16 +107,22 @@ main {
 
 .botoes-acao button {
   padding: 10px 18px;
-  background-color: #3399ff;
+  background-color: #6C757D;
   color: white;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 16px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   transition: background-color .3s ease, transform .2s ease;
 }
-.botoes-acao button:hover { background-color: #007acc; transform: scale(1.05); }
+
+.botoes-acao #btnLimpar {
+  background-color: #DC3545;
+}
+
+.botoes-acao button:hover { background-color: #5a6268; transform: scale(1.05); }
+
 .botoes-acao button:active { transform: scale(0.98); }
 
 .pergunta-box {
@@ -169,7 +175,7 @@ main {
   max-width: 220px;
   padding: 10px 16px;
   font-size: 16px;
-  background-color: #3399ff;
+  background-color: #007BFF;
   color: #fff;
   border: none;
   border-radius: 6px;

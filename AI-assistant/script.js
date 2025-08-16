@@ -1,9 +1,7 @@
 const URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent"
 
 function carregarRespostas() {
-    const respostasDiv = document.querySelector("#respostas");
     const respostasSalvas = localStorage.getItem("respostas");
-    let lengthRespostas = 0;
     let respostas = [];
 
     try {
@@ -43,6 +41,7 @@ function adicionarResposta(resposta, pergunta, isSetItem = true) {
 
 async function fazerPergunta(pergunta) {
     const apiKey = document.querySelector("#api-key").value;
+    const contador = document.querySelector("#contador");
 
     if (!pergunta || !pergunta.trim()) {
         return "⚠️ Digite uma pergunta antes de enviar.";
@@ -83,6 +82,9 @@ async function fazerPergunta(pergunta) {
         if (apiKey) {
             localStorage.setItem("apiKey", apiKey)
         }
+
+        contador.textContent = `0 / 100 caracteres`;
+        document.querySelector("#perguntar").disabled = true;
         return data.candidates[0].content.parts[0].text;
     } catch (error) {
         console.error("Error ao fazer a pergunta:", error);
@@ -94,6 +96,7 @@ async function fazerPergunta(pergunta) {
 document.addEventListener("DOMContentLoaded", (event) => {
     const form = document.querySelector(".pergunta-box");
     const toggleBtn = document.querySelector("#toggle-theme");
+    const contador = document.querySelector("#contador");
 
     const temaSalvo = localStorage.getItem("tema");
     if (temaSalvo === "escuro") {
@@ -136,21 +139,43 @@ document.addEventListener("DOMContentLoaded", (event) => {
         behavior: 'smooth'
     });
 
-    document.getElementById("exportPdfBtn").addEventListener("click", () => {
-        // Seleciona o chat inteiro
-        const element = document.getElementById("respostas");
+    document.querySelector("#exportPdfBtn").addEventListener("click", () => {
+        const element = document.querySelector("#respostas");
 
         const opt = {
-            margin:       [10, 10, 10, 10], // top, left, bottom, right
+            margin:       [10, 10, 10, 10],
             filename:     'chat-conversa.pdf',
-            image:        { type: 'jpeg', quality: 0.98 },
+            image:        { type: 'jpeg', quality: 1, width: 100 },
             html2canvas:  { scale: 2, useCORS: true },
             jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
-            pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] } // evita que divs quebrem no meio
+            pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
         };
 
 
         // Gera o PDF
         html2pdf().set(opt).from(element).save();
     });
+
+    document.querySelector("#pergunta").addEventListener("input", (event) => {
+        const inputLength = event.target.value.length;
+        contador.textContent = `${inputLength} / 100 caracteres`;
+        document.querySelector("#perguntar").disabled = inputLength === 0 || inputLength > 100;
+    });
+
+    document.querySelector("#btnLimpar").addEventListener("click", () => {
+        const respostas = document.querySelector("#respostas");
+        respostas.innerHTML = "";
+        respostas.style.display = "none";
+        localStorage.removeItem("respostas");
+    });
+
+    document.querySelector("#btnCopiar").addEventListener("click", () => {
+        const resposta = document.querySelector("#respostas").lastElementChild;
+        navigator.clipboard.writeText(resposta.innerText).then(() => {
+            alert("Resposta copiada para a área de transferência!");
+        }).catch(err => {
+            console.error('Erro ao copiar texto: ', err);
+        });
+    });
+
 });
