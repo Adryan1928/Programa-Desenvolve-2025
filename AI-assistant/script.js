@@ -141,6 +141,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     document.querySelector("#exportPdfBtn").addEventListener("click", () => {
         const element = document.querySelector("#respostas");
+        const elementToExport = element.cloneNode(true);
+        elementToExport.style.width = "100%";
 
         const opt = {
             margin:       [10, 10, 10, 10],
@@ -153,7 +155,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
 
         // Gera o PDF
-        html2pdf().set(opt).from(element).save();
+        html2pdf().set(opt).from(elementToExport).save();
     });
 
     document.querySelector("#pergunta").addEventListener("input", (event) => {
