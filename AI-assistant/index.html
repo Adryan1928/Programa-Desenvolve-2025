@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Papeando com a IA</title>
     <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>   
 <body>
     <header>
@@ -27,6 +28,7 @@
             <button id="btnCopiar" title="Copiar todas as respostas">
                 Copiar
             </button>
+            <button id="exportPdfBtn">Exportar Chat para PDF</button>
         </div>
 
         <form class="pergunta-box" method="post" action=".">
@@ -38,6 +40,8 @@
     </main>
 
     <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
 </body>
 </html>
 
